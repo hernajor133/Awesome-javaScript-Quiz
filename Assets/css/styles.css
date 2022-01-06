@@ -66,3 +66,30 @@ header {
     background-color: var(--correct);
     color: 000000;
 }
+
+.btn.wrong {
+    background: radial-gradient(circle, rgb(198, 218, 221) 0%, rgba(143, 141, 139, 0.954) 100%);
+    border-radius: 8px;
+    color: 000000;
+    cursor: pointer;
+    font-size: 30px;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    /* max-width: 255px; */
+    padding: 15px 40px;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+    margin-top: 0.6em;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#enter-score-text{
+    font-size: 22px;
+    margin-top: 0.5em;
+}
+
+.hide {
+    display: none;
+}
