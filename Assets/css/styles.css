@@ -39,4 +39,30 @@ header {
 
 .main-second-text {
     font-size: 15px;
+    margin-top: 10px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    background: var(--secondary);
+    padding: 5px 10px;
+    border: 1px solid var(--secondary);
+    outline: none;
+    font-weight: bolder;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.btn:hover {
+    border-color: var(--text);
+}
+
+.btn.correct {
+    background-color: var(--correct);
+    color: 000000;
 }
