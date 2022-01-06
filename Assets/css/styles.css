@@ -1,0 +1,25 @@
+
+:root {
+    --primary: #545F66;
+    --text: #ffffffce;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--primary);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text);
+}
+
+.container {
+    display: block;
+    margin: 60px auto;
+    text-align: center;font-size: 30px;
+}
