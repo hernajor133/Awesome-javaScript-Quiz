@@ -107,3 +107,26 @@ var questions = [
         ],
     },
 ];
+
+
+
+
+startButton.addEventListener("click", startGame);
+// nextButton.addEventListener("click", nextQuestion);
+
+function startGame() {
+    startButton.classList.add("hide");
+    instructions.classList.add("hide");
+    questionContainerE1.classList.remove("hide");
+    nextButton.classList.remove("hide");
+    form.classList.add("hide");
+
+    timeLeft = 60;
+    countDown();
+    
+    randomizeQuestion = questions.sort(() => Math.random()  - .5);
+    questionPointer = 0;
+
+    setQuestion ();
+}
+
