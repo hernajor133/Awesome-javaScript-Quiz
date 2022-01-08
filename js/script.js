@@ -9,3 +9,74 @@ var instructions = document.querySelector(".instructions-text");
 var form = document.querySelector("#form");
 var scoreText = document.querySelector("#enter-score-text");
 
+var timer;
+var timeLeft;
+
+var randomizeQuestion;
+var questionPointer;
+
+var questions = [
+    {
+        question: "",
+        answers: [
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+        ],
+    },
+    {
+        question: "",
+        answers: [
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+        ],
+    },
+    {
+        question: "",
+        answers: [
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+        ],
+    },
+    {
+        question: "",
+        answers: [
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+        ],
+    },
+    {
+        question: "",
+        answers: [
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+        ],
+    },
+    {
+        question: "",
+        answers: [
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+        ],
+    },
+    {
+        question: "",
+        answers: [
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+            {text: "", correct: },
+        ],
+    },
+];
