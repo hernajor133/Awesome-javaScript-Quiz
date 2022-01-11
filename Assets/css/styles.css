@@ -1,9 +1,10 @@
 :root {
-    --primary: #545F66;
+    --primary: #801a00;
     --secondary: rgb(198, 218, 221);
+    --third: #ff9900;
     --text: #ffffffce;
     --correct: #B1CC74;
-    --wrong: #8d2828dc;
+    --wrong: #ff3300;
 }
 
 body {
@@ -16,21 +17,29 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
     color: var(--text);
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--third);
+    padding: 30px;
+    border-radius: 50px;
+    margin-top: 20px;
+    box-shadow: rgba(189, 186, 37, 0.4) 0px 2px 4px, rgba(226, 230, 14, 0.3) 0px 7px 13px -3px, rgba(193, 245, 4, 0.2) 0px -3px 0px inset;
+    font-size: 25px;
 }
 
 .container {
     display: block;
     margin: 60px auto;
     text-align: center;
-    font-size: 30px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    font-size: 35px;
+    box-shadow: rgba(189, 186, 37, 0.4) 0px 2px 4px, rgba(226, 230, 14, 0.3) 0px 7px 13px -3px, rgba(193, 245, 4, 0.2) 0px -3px 0px inset;
     transition: 0.3s;
     width: 80vw;
-    background-color: var(--white);
+    background-color: var(--third);
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 .instructions {
@@ -38,7 +47,7 @@ header {
 }
 
 .main-second-text {
-    font-size: 15px;
+    font-size: 20px;
     margin-top: 10px;
 }
 
@@ -84,6 +93,8 @@ header {
     margin-top: 0.6em;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
+
+
 
 #enter-score-text{
     font-size: 22px;

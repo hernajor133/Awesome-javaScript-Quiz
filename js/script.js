@@ -3,9 +3,9 @@ var startButton = document.querySelector("#start-btn");
 var nextButton = document.querySelector("#next-btn");
 var timerCount = document.querySelector(".timer-count");
 var questionContainerE1 = document.querySelector("#question-container");
-var questionE1 = document.querySelector("#question");
+var questionE1 = document.querySelector("#questions");
 var answerButtonsE1 = document.querySelector("#answer-btns");
-var instructions = document.querySelector(".instructions-text");
+var instructions = document.querySelector(".instructions");
 var form = document.querySelector("#form");
 var scoreText = document.querySelector("#enter-score-text");
 
@@ -112,7 +112,7 @@ var questions = [
 
 
 startButton.addEventListener("click", startGame);
-// nextButton.addEventListener("click", nextQuestion);
+nextButton.addEventListener("click", nextQuestion);
 
 function startGame() {
     startButton.classList.add("hide");
@@ -125,8 +125,102 @@ function startGame() {
     countDown();
     
     randomizeQuestion = questions.sort(() => Math.random()  - .5);
-    questionPointer = 0;
+     questionPointer = 0;
 
-    setQuestion ();
+     showQuestion();
 }
 
+function countDown() {
+
+    timer = setInterval(function() {
+    
+        if (timeLeft > 0) {
+            timerCount.textContent = timeLeft + "Seconds";
+            timeLeft --;
+
+        } if (timeLeft === 0) {
+            clearInterval(timer);
+            // trigger loseGame();
+            questionContainerE1.classList.add("hide");
+            startButton.classList.remove("hide");
+            instructions.classList.remove("hide");
+            nextButton.classList.add("hide");
+
+            instructions.textContent=("YOU LOSE! TRY AGAIN");
+        }
+    }, 1000); 
+
+} 
+
+
+function showQuestion(questions) {
+    questionE1.innerText = questions.questions;
+    question.answers.forEach(answer => {
+        var button = document.createElement("button");
+        button.innerText = answer.text;
+        button.classList.add("btn");
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener("click", answerQuestion);
+        answerButtonsE1.appendChild(button);
+    });
+}
+
+function resetButton () {
+    nextButton.classList.add("hide");
+    while (answerButtonsE1.firstChild) {
+        answerButtonsE1.removeChild (answerButtonsE1.firstChild)
+    }
+}
+
+
+
+function answerQuestion (event) {
+    var buttonE1 = event.target;
+    var correct = buttonE1.dataset.correct;
+    setCorrectAnswer(document.body, correct)
+    Array.from(answerButtonsE1.children).forEach(button => {
+        setCorrectAnswer(button, button.dataset.correct)
+    })
+
+    if(randomizeQuestion.length > questionPointer +1 ) {
+        nextButton.classList.remove("hide");
+    } else {
+        var score = timeLeft +1;
+        form.classList.remove("hide");
+        scoreText.innerText = ("Enter Initials to Save Score" + score)
+        startButton.innerText = ("Restart");
+        startButton.classList.remove("hide");
+        clearInterval(timer);
+        return score;
+    }
+    console.log(correct);
+
+    if (!correct === true) {
+        console.log(timeLeft);
+        timeLeft = timeLeft - 10;
+        console.log(timeLeft);
+    }
+}
+
+
+function clearAnswer (element) {
+    element.classList.remove("correct");
+    element.classList.remove("wrong");
+}
+
+
+function nextQuestion () {
+    questionPointer++;
+    showQuestion ();
+}
+
+var userInitial = document.querySelector("#userinput.value");
+var submitScoreBtn = document.querySelector("#high-score-btn");
+
+submitScoreBtn.addEventListener("click", saveScore);
+
+function saveScore () {
+    localStorage.setItem("userInitialInput", JSON.stringify(userInitial));
+}
