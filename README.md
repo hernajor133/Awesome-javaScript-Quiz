@@ -13,3 +13,5 @@ their initials.
 ## Links
 
 git hub repo: https://github.com/hernajor133/Awesome-javaScript-Quiz.git
+
+deployed pages link: https://hernajor133.github.io/Awesome-javaScript-Quiz/
