@@ -12,6 +12,7 @@ var scoreText = document.querySelector("#enter-score-text");
 var timer;
 var timeLeft;
 
+var quizScore;
 var randomizeQuestion;
 var questionPointer;
 
@@ -122,12 +123,13 @@ function startGame() {
     form.classList.add("hide");
 
     timeLeft = 60;
+    quizScore = 0;
     countDown();
     
     randomizeQuestion = questions.sort(() => Math.random()  - .5);
      questionPointer = 0;
 
-     showQuestion();
+     showQuestion(randomizeQuestion);
 }
 
 function countDown() {
@@ -140,7 +142,6 @@ function countDown() {
 
         } if (timeLeft === 0) {
             clearInterval(timer);
-            // trigger loseGame();
             questionContainerE1.classList.add("hide");
             startButton.classList.remove("hide");
             instructions.classList.remove("hide");
@@ -154,17 +155,33 @@ function countDown() {
 
 
 function showQuestion(questions) {
-    questionE1.innerText = questions.questions;
-    question.answers.forEach(answer => {
+    
+    var current = questions[questionPointer];
+    questionE1.innerText = current.question;
+    current.answers.forEach(answer => {
         var button = document.createElement("button");
         button.innerText = answer.text;
         button.classList.add("btn");
-        if (answer.correct) {
+      
             button.dataset.correct = answer.correct
-        }
+        
         button.addEventListener("click", answerQuestion);
         answerButtonsE1.appendChild(button);
+
+       
     });
+    
+    if(showQuestion.length > questionPointer - 8) {
+        nextButton.classList.remove("hide");
+    } else {
+        var score = timeLeft +1;
+        form.classList.remove("hide");
+        saveScore.innerText = ("Enter Initials to Save Score" + score)   
+        startButton.innerText = ("Restart");
+        startButton.classList.remove("hide");
+        clearInterval(timer);
+        return score;
+    }
 }
 
 function resetButton () {
@@ -179,25 +196,31 @@ function resetButton () {
 function answerQuestion (event) {
     var buttonE1 = event.target;
     var correct = buttonE1.dataset.correct;
-    setCorrectAnswer(document.body, correct)
-    Array.from(answerButtonsE1.children).forEach(button => {
-        setCorrectAnswer(button, button.dataset.correct)
-    })
-
-    if(randomizeQuestion.length > questionPointer +1 ) {
-        nextButton.classList.remove("hide");
-    } else {
-        var score = timeLeft +1;
-        form.classList.remove("hide");
-        scoreText.innerText = ("Enter Initials to Save Score" + score)
-        startButton.innerText = ("Restart");
-        startButton.classList.remove("hide");
-        clearInterval(timer);
-        return score;
+    console.log("Here" +typeof correct);
+    if (correct === "true") {
+        timeLeft = 60;
+        quizScore += 1;
     }
+    // setCorrectAnswer(document.body, correct)
+    // Array.from(answerButtonsE1.children).forEach(button => {
+    //     setCorrectAnswer(button, button.dataset.correct)
+    // })
+    questionPointer += 1;
+    // 196 to 206 move to show question
+    // if(showQuestion.length > questionPointer - 9) {
+    //     nextButton.classList.remove("hide");
+    // } else {
+    //     var score = timeLeft +1;
+    //     form.classList.remove("hide");
+    //     scoreText.innerText = ("Enter Initials to Save Score" + score)   
+    //     startButton.innerText = ("Restart");
+    //     startButton.classList.remove("hide");
+    //     clearInterval(timer);
+    //     return score;
+    // }
     console.log(correct);
 
-    if (!correct === true) {
+    if (correct !== "true") {
         console.log(timeLeft);
         timeLeft = timeLeft - 10;
         console.log(timeLeft);
@@ -212,8 +235,11 @@ function clearAnswer (element) {
 
 
 function nextQuestion () {
-    questionPointer++;
-    showQuestion ();
+    // questionPointer++;
+    answerButtonsE1.innerText = "";
+    questionE1.innerText = "";
+    showQuestion (questions);
+    
 }
 
 var userInitial = document.querySelector("#userinput.value");
@@ -222,5 +248,7 @@ var submitScoreBtn = document.querySelector("#high-score-btn");
 submitScoreBtn.addEventListener("click", saveScore);
 
 function saveScore () {
+    
     localStorage.setItem("userInitialInput", JSON.stringify(userInitial));
+    
 }
