@@ -12,4 +12,4 @@ their initials.
 
 ## Links
 
-git hub repo: 
+git hub repo: https://github.com/hernajor133/Awesome-javaScript-Quiz.git
